@@ -1,3 +1,5 @@
+import "server-only"; // guarantees this file will not be imported in client files
+
 import {
   int,
   text,
