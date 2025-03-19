@@ -6,8 +6,9 @@
 - [x] Move folder open state to URL
 - [x] Add auth
 - [x] Add file uploading
+- [x] Add "ownership" of files and folders
+- [x] Upload files to the right folder
 - [ ] Home page
-- [ ] Upload files to the right folder
 - [ ] Delete files button
 - [ ] Allow files that aren't images to be uploaded
 - [ ] Add analytics
