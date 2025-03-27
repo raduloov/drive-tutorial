@@ -9,6 +9,6 @@
 - [x] Add "ownership" of files and folders
 - [x] Upload files to the right folder
 - [x] Allow files that aren't images to be uploaded
-- [ ] Home page
-- [ ] Delete files button
 - [ ] Add analytics
+- [ ] Delete files button
+- [ ] Home page + onboarding
