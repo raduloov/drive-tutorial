@@ -5,7 +5,7 @@ import {
   files_table as filesSchema,
   folders_table as foldersSchema,
 } from "~/server/db/schema";
-import { eq } from "drizzle-orm";
+import { and, eq, isNull } from "drizzle-orm";
 
 export const QUERIES = {
   getAllParentsForFolder: async function (folderId: number) {
@@ -50,6 +50,15 @@ export const QUERIES = {
 
     return folder[0];
   },
+  getRootFolderForUser: async function (userId: string) {
+    const folder = await db
+      .select()
+      .from(foldersSchema)
+      .where(
+        and(eq(foldersSchema.ownerId, userId), isNull(foldersSchema.parent)),
+      );
+    return folder[0];
+  },
 };
 
 export const MUTATIONS = {
@@ -66,5 +75,38 @@ export const MUTATIONS = {
       ...input.file,
       ownerId: input.userId,
     });
+  },
+
+  onboardUser: async function (userId: string) {
+    const rootFolder = await db
+      .insert(foldersSchema)
+      .values({
+        name: "Root",
+        parent: null,
+        ownerId: userId,
+      })
+      .$returningId();
+
+    const rootFolderId = rootFolder[0]!.id;
+
+    await db.insert(foldersSchema).values([
+      {
+        name: "Trash",
+        parent: rootFolderId,
+        ownerId: userId,
+      },
+      {
+        name: "Shared",
+        parent: rootFolderId,
+        ownerId: userId,
+      },
+      {
+        name: "Documents",
+        parent: rootFolderId,
+        ownerId: userId,
+      },
+    ]);
+
+    return rootFolderId;
   },
 };
