@@ -1,15 +1,15 @@
 "use client";
 
-import { Upload, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { FileRow, FolderRow } from "./file-row";
-import type { files_tables, folders_table } from "~/server/db/schema";
+import type { files_table, folders_table } from "~/server/db/schema";
 import Link from "next/link";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import { UploadButton } from "~/components/uploadthing";
 import { useRouter } from "next/navigation";
 
 export default function DriveContents(props: {
-  files: (typeof files_tables.$inferSelect)[];
+  files: (typeof files_table.$inferSelect)[];
   folders: (typeof folders_table.$inferSelect)[];
   parents: (typeof folders_table.$inferSelect)[];
 
@@ -50,8 +50,9 @@ export default function DriveContents(props: {
           <div className="border-b border-gray-700 px-6 py-4">
             <div className="grid grid-cols-12 gap-4 text-sm font-medium text-gray-400">
               <div className="col-span-6">Name</div>
-              <div className="col-span-3">Type</div>
+              <div className="col-span-2">Type</div>
               <div className="col-span-3">Size</div>
+              <div className="col-span-1"></div>
             </div>
           </div>
           <ul>

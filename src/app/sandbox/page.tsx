@@ -2,7 +2,7 @@ import { auth } from "@clerk/nextjs/server";
 import { eq } from "drizzle-orm";
 import { mockFiles, mockFolders } from "~/lib/mock-data";
 import { db } from "~/server/db";
-import { files_tables, folders_table } from "~/server/db/schema";
+import { files_table, folders_table } from "~/server/db/schema";
 
 export default async function SandboxPage() {
   const user = await auth();

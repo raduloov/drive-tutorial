@@ -11,5 +11,11 @@
 - [x] Allow files that aren't images to be uploaded
 - [x] Add analytics
 - [x] Make sure sort order is consistent
-- [ ] Delete files button
+- [x] Add delete
 - [ ] Home page + onboarding
+
+## Fun follow ups
+
+### Folder deletions
+
+Make sure you fetch all of the folders that have its as a parent and their children too

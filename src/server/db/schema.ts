@@ -13,7 +13,7 @@ export const createTable = singlestoreTableCreator(
   (name) => `drive_tutorial_${name}`,
 );
 
-export const files_tables = createTable(
+export const files_table = createTable(
   "files_table",
   {
     id: bigint("id", { mode: "number", unsigned: true })
@@ -35,7 +35,7 @@ export const files_tables = createTable(
   },
 );
 
-export type DB_FileType = typeof files_tables.$inferSelect;
+export type DB_FileType = typeof files_table.$inferSelect;
 
 export const folders_table = createTable(
   "folders_table",
